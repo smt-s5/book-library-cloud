@@ -25,10 +25,14 @@ async function fetchBooks() {
         books.forEach(book => {
             const bookCard = document.createElement('div');
             bookCard.className = 'book-card';
+
             bookCard.innerHTML = `
-                <h3>${book.title}</h3>
-                <p>Penulis: ${book.author}</p>
-            `;
+        <h3>${book.title}</h3>
+        <p>Penulis: ${book.author}</p>
+        <button onclick="updateBook(${book.id})">Edit</button>
+        <button onclick="deleteBook(${book.id})">Hapus</button>
+    `;
+
             bookList.appendChild(bookCard);
         });
     } catch (error) {
@@ -63,5 +67,54 @@ async function addBook(e) {
     } catch (error) {
         console.error('Error adding book:', error);
         alert('Terjadi kesalahan koneksi ke backend.');
+    }
+}
+
+async function deleteBook(id) {
+    if (!confirm("Yakin mau hapus buku ini?")) return;
+    await fetch(`http://localhost:3000/books/${id}`, {
+        method: 'DELETE'
+    });
+
+    fetchBooks();
+}
+
+async function updateBook(id) {
+    const title = prompt("Judul baru:");
+    const author = prompt("Author baru:");
+
+    await fetch(`http://localhost:3000/books/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ title, author })
+    });
+
+    getBooks();
+}
+
+async function updateBook(id) {
+    const title = prompt("Masukkan judul baru:");
+    const author = prompt("Masukkan penulis baru:");
+
+    if (!title || !author) return;
+
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title, author })
+        });
+
+        if (response.ok) {
+            fetchBooks(); // 🔥 refresh data
+        } else {
+            alert('Gagal update buku');
+        }
+    } catch (error) {
+        console.error('Error updating book:', error);
     }
 }
