@@ -24,4 +24,4 @@ connection.query('SELECT * FROM books', (err, result) => {
     console.log('Books data:', result)
 });
 
-module.exports = connection
+module.exports = connection;
