@@ -4,7 +4,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Environment variables (PENTING - jangan upload ke GitHub!)
+# Environment variables
 .env
 .env.local
 .env.development
@@ -31,10 +31,10 @@ Thumbs.db
 logs/
 *.log
 
-# Docker (opsional, jika tidak ingin commit volume lokal)
+# Docker 
 docker-volumes/
 
-# AWS credentials (SANGAT PENTING!)
+# AWS credentials 
 .aws/
 *.pem
 *.key
