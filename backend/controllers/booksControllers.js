@@ -20,11 +20,11 @@ exports.getBookById = (req, res) => {
 
 // CREATE
 exports.createBook = (req, res) => {
-    const { title, author, year = null } = req.body;
+    const { title, author, year = null, type = 'Fiction' } = req.body;
 
     db.query(
-        'INSERT INTO books (title, author, year) VALUES (?, ?, ?)',
-        [title, author, year],
+        'INSERT INTO books (title, author, year, type) VALUES (?, ?, ?, ?)',
+        [title, author, year, type],
         (err, result) => {
             if (err) return res.status(500).json(err);
             res.json({ message: 'Book added' });
@@ -35,11 +35,11 @@ exports.createBook = (req, res) => {
 // UPDATE
 exports.updateBook = (req, res) => {
     const id = req.params.id;
-    const { title, author, year = null } = req.body;
+    const { title, author, year = null, type = 'Fiction' } = req.body;
 
     db.query(
-        'UPDATE books SET title=?, author=?, year=? WHERE id=?',
-        [title, author, year, id],
+        'UPDATE books SET title=?, author=?, year=?, type=? WHERE id=?',
+        [title, author, year, type, id],
         (err, result) => {
             if (err) return res.status(500).json(err);
             res.json({ message: 'Book updated' });

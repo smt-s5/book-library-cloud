@@ -1,44 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Library Cloud</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-    <header>
-        <h1>📚 Book Library Cloud</h1>
-        <p>Implementasi Arsitektur Cloud AWS & Docker</p>
-    </header>
+
+    <nav class="navbar">
+        <div class="nav-left">
+            <span class="brand">Book Library</span>
+            <a href="#" class="nav-link active">Home</a>
+        </div>
+        <div class="nav-right">
+            <input type="text" id="searchInput" placeholder="Search by title or author..." class="search-input">
+            <button id="searchBtn" class="btn-search">Search</button>
+        </div>
+    </nav>
 
     <main class="container">
+        
+        <header class="sub-header">
+            <h1>Manage Library</h1>
+            <p class="subtitle">Implementasi Arsitektur Cloud AWS & Docker</p>
+        </header>
+
         <section class="form-section">
-            <h2>Tambah Buku Baru</h2>
             <form id="bookForm">
                 <div class="form-group">
-                    <label for="title">Judul Buku:</label>
-                    <input type="text" id="title" required placeholder="Masukkan judul buku">
+                    <label for="title">Name</label>
+                    <input type="text" id="title" placeholder="Book Name" required>
                 </div>
+
                 <div class="form-group">
-                    <label for="author">Penulis:</label>
-                    <input type="text" id="author" required placeholder="Masukkan nama penulis">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" placeholder="Author" required>
                 </div>
-                <button type="submit">Simpan Buku</button>
+
+                <div class="form-group">
+                    <label>Type</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="type" value="Fiction" checked> Fiction</label>
+                        <label><input type="radio" name="type" value="Computer Programming"> Computer Programming</label>
+                        <label><input type="radio" name="type" value="Cooking"> Cooking</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Add Book</button>
             </form>
         </section>
 
         <section class="list-section">
-            <h2>Koleksi Buku</h2>
-            <div id="bookList" class="book-grid">
-                <p class="loading">Memuat data buku...</p>
+            <h2>Your books</h2>
+            <div class="table-responsive">
+                <table class="book-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Type</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookList">
+                        <tr>
+                            <td colspan="4" class="loading" style="text-align: center;">Memuat data buku...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </section>
+
     </main>
 
     <script src="js/app.js"></script>
 </body>
-
 </html>
