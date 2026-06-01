@@ -1,20 +1,22 @@
-const express = require('express')
-const cors = require('cors')
-
-const db = require('./db')
-const app = express()
-const port = 3000
-
-app.use(cors());
-app.use(express.json());
+const express = require('express');
+const cors = require('cors');
 
 const bookRoutes = require('./routes/books');
+
+const app = express();
+
+app.use(cors());
+
+app.use(express.json());
+
 app.use('/books', bookRoutes);
 
 app.get('/', (req, res) => {
-  res.send('Book Library')
-})
+    res.send('Book Library API Running');
+});
 
-app.listen(port, () => {
-  console.log(`Book Library running on port ${port}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
