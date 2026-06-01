@@ -1,3 +1,5 @@
+console.log("Frontend JS berhasil tersambung!");
+
 // Ganti URL ini dengan URL API Backend kamu nantinya (misal IP EC2 atau localhost)
 const API_URL = 'http://localhost:3000/books';
 
@@ -77,21 +79,6 @@ async function deleteBook(id) {
     });
 
     fetchBooks();
-}
-
-async function updateBook(id) {
-    const title = prompt("Judul baru:");
-    const author = prompt("Author baru:");
-
-    await fetch(`http://localhost:3000/books/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ title, author })
-    });
-
-    getBooks();
 }
 
 async function updateBook(id) {

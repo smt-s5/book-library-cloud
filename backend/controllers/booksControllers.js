@@ -20,7 +20,7 @@ exports.getBookById = (req, res) => {
 
 // CREATE
 exports.createBook = (req, res) => {
-    const { title, author, year } = req.body;
+    const { title, author, year = null } = req.body;
 
     db.query(
         'INSERT INTO books (title, author, year) VALUES (?, ?, ?)',
@@ -35,7 +35,7 @@ exports.createBook = (req, res) => {
 // UPDATE
 exports.updateBook = (req, res) => {
     const id = req.params.id;
-    const { title, author, year } = req.body;
+    const { title, author, year = null } = req.body;
 
     db.query(
         'UPDATE books SET title=?, author=?, year=? WHERE id=?',
