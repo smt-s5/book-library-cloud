@@ -1,4 +1,4 @@
-const API_URL = "http://18.215.175.46:3000/books";
+const API_URL = "http://100.26.58.70:3000/books";
 
 const bookForm = document.getElementById("bookForm");
 const bookList = document.getElementById("bookList");
